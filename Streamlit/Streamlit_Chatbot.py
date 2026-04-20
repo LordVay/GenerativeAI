@@ -6,7 +6,7 @@ import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
-
+gemini_api_key = st.secrets["GEMINI_API_KEY"]
 st.set_page_config(
 
     page_title="Chatbot",
@@ -25,11 +25,11 @@ for message in st.session_state.chat_history:
 
 llm = ChatGoogleGenerativeAI(
     model = "gemini-2.5-flash",
-    api_key = os.getenv("GEMINI_API_KEY"),
+    api_key = gemini_api_key,
     temperature = 0.1
 )
 
-user_prompt = st.chat_input("Ask Anything")
+user_prompt = st.chat_input("Ask Anything") 
 
 if user_prompt:
     with st.chat_message("user"):
